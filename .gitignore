@@ -1,0 +1,31 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Laravel / PHP (para las siguientes etapas del proyecto)
+/vendor/
+/node_modules/
+/public/build/
+/public/hot
+/public/storage
+/storage/*.key
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+npm-debug.log
+yarn-error.log
+
+# Docker
+docker-compose.override.yml
+
+# Diagramas temporales
+*.bkp
+*.dtmp
