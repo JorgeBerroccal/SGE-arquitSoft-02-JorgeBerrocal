@@ -65,7 +65,41 @@ Primera propuesta de arquitectura del **Sistema de Gestión Escolar (SGE)**, ela
                                     └──────────────────────────┘
 ```
 
-## 5. Diagrama de arquitectura (Mermaid)
+## 5. Diagrama de arquitectura (Archify)
+
+Diagrama interactivo generado con la skill [Archify](https://github.com/tt-a1i/archify) (MIT). Archify parte de una especificación JSON tipada, la valida contra su esquema, revisa la composición (cruces de líneas, etiquetas, legibilidad) y entrega un HTML autocontenido con tema claro/oscuro, enfoque por nodo, trazado de rutas y exportación a PNG/SVG.
+
+![Arquitectura del SGE generada con Archify](archify/sge-arquitectura.png)
+
+| Archivo | Contenido |
+|---------|-----------|
+| [`archify/sge-arquitectura.archify.json`](archify/sge-arquitectura.archify.json) | Especificación fuente del diagrama (componentes, capas, relaciones y tarjetas) |
+| [`archify/sge-arquitectura.html`](archify/sge-arquitectura.html) | Diagrama interactivo (descargar y abrir en el navegador) |
+| [`archify/sge-arquitectura.png`](archify/sge-arquitectura.png) | Imagen estática para el README y documentos |
+
+### Cambios respecto a la versión inicial
+
+| Cambio | Motivo |
+|--------|--------|
+| Se agrega el **proxy HTTPS (Caddy/Nginx)** entre los usuarios y la aplicación. | Hace visible la restricción RC16 (HTTPS con Let's Encrypt) y el punto de entrada del despliegue Docker (DA06). |
+| Los 8 módulos se agrupan en **4 subsistemas**: *Auth/RBAC + Auditoría*, *Gestión Académica* (M2–M3), *Asistencia y Evaluación* (M4–M5 + Reportes) y *Asistente Virtual IA* (M6). | Agrupa módulos que cooperan y comparten datos; reduce el acoplamiento visual y deja claras las responsabilidades de cada bloque (AC05). |
+| El **Asistente IA ya no accede directo a la base de datos**: consulta a *Asistencia y Evaluación* solo los datos que el RBAC permite. | Refuerza el driver DA02: un único punto controlado decide qué información se envía a la IA. |
+| Se separa **Eloquent ORM** de **MySQL 8** dentro de la capa de datos. | Muestra cómo la lógica de negocio accede a los datos sin SQL directo (migraciones versionadas, RC05). |
+| La API de Claude se conecta **desde el Asistente IA** (no desde la capa de datos). | Representa correctamente quién inicia la integración externa. |
+
+### Cómo regenerar el diagrama
+
+```bash
+# 1. Instalar la skill (una sola vez)
+npx skills add tt-a1i/archify -g
+
+# 2. Validar y generar el HTML desde la raíz del repositorio
+node <ruta-de-archify>/bin/archify.mjs finalize architecture \
+  arquitectura/archify/sge-arquitectura.archify.json \
+  arquitectura/archify/sge-arquitectura.html --quality showcase
+```
+
+## 6. Diagrama de arquitectura (Mermaid)
 
 ```mermaid
 flowchart TD
@@ -162,7 +196,7 @@ flowchart TD
     class Admin,Director,Docente,Padre,Alumno,Web,Ctrl,Auth,Academica,Matricula,Asistencia,Evaluacion,IA,Reportes,Auditoria,BD,Claude nodo
 ```
 
-## 6. Descripción
+## 7. Descripción
 
 La arquitectura inicial se organiza en tres capas principales:
 
@@ -172,7 +206,7 @@ La arquitectura inicial se organiza en tres capas principales:
 
 Además, el módulo de **Asistente Virtual (IA)** es el único que se integra con un sistema externo, la **API de Claude (Anthropic)**. Antes de cada consulta, recupera de la base de datos solo la información permitida para el usuario autenticado y la envía como contexto por HTTPS, evitando exponer datos de otros estudiantes (DA02).
 
-## 7. Relación con los drivers arquitectónicos
+## 8. Relación con los drivers arquitectónicos
 
 | Driver | Decisión arquitectónica |
 |--------|-------------------------|

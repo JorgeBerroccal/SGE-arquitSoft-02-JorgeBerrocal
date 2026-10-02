@@ -39,7 +39,11 @@ SGE-arquitSoft-02-JorgeBerrocal/
 │   ├── 05-restricciones.md
 │   └── 06-driver-arquitectonicos.md
 ├── arquitectura/
-│   └── arquitectura-inicial.md
+│   ├── arquitectura-inicial.md
+│   └── archify/
+│       ├── sge-arquitectura.archify.json
+│       ├── sge-arquitectura.html
+│       └── sge-arquitectura.png
 ├── .gitignore
 └── README.md
 ```
@@ -49,4 +53,10 @@ SGE-arquitSoft-02-JorgeBerrocal/
 | Etapa | Contenido | Ubicación |
 |-------|-----------|-----------|
 | Etapa 1: Análisis del sistema | Actores, historias de usuario, requisitos funcionales, atributos de calidad, restricciones y drivers arquitectónicos | [`analisis-de-sistema/`](analisis-de-sistema/) |
-| Etapa 2: Diseño arquitectónico inicial | Capas, módulos, responsabilidades, dependencias, sistemas externos y diagrama | [`arquitectura/arquitectura-inicial.md`](arquitectura/arquitectura-inicial.md) |
+| Etapa 2: Diseño arquitectónico inicial | Capas, módulos, responsabilidades, dependencias, sistemas externos y diagramas (Mermaid y Archify) | [`arquitectura/arquitectura-inicial.md`](arquitectura/arquitectura-inicial.md) |
+
+## Diagrama de arquitectura
+
+![Arquitectura del SGE](arquitectura/archify/sge-arquitectura.png)
+
+Generado con [Archify](https://github.com/tt-a1i/archify). Versión interactiva: [`arquitectura/archify/sge-arquitectura.html`](arquitectura/archify/sge-arquitectura.html).
