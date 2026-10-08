@@ -29,3 +29,7 @@ docker-compose.override.yml
 # Diagramas temporales
 *.bkp
 *.dtmp
+
+# Contexto de trabajo con Claude Code (no forma parte de la entrega)
+CLAUDE.md
+/docs/
