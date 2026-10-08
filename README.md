@@ -32,6 +32,7 @@ Arquitectura de Software (IS-488) — Docente: Ing. Lizbeth Jaico Quispe — Sem
 ```
 SGE-arquitSoft-02-JorgeBerrocal/
 ├── analisis-de-sistema/
+│   ├── 00-necesidad-del-negocio.md
 │   ├── 01-actores.md
 │   ├── 02-historias-del-usuario.md
 │   ├── 03-requisitos-funcionales.md
@@ -40,6 +41,10 @@ SGE-arquitSoft-02-JorgeBerrocal/
 │   └── 06-driver-arquitectonicos.md
 ├── arquitectura/
 │   ├── arquitectura-inicial.md
+│   ├── decisiones-arquitectonicas.md
+│   ├── estilo-arquitectonico.md
+│   ├── enfoque/
+│   │   └── enfoque-arquitectonico.md
 │   └── archify/
 │       ├── sge-arquitectura.archify.json
 │       ├── sge-arquitectura.html
@@ -57,6 +62,18 @@ SGE-arquitSoft-02-JorgeBerrocal/
 |-------|-----------|-----------|
 | Etapa 1: Análisis del sistema | Actores, historias de usuario, requisitos funcionales, atributos de calidad, restricciones y drivers arquitectónicos | [`analisis-de-sistema/`](analisis-de-sistema/) |
 | Etapa 2: Diseño arquitectónico inicial | Capas, módulos, responsabilidades, dependencias, sistemas externos y diagramas (Mermaid y Archify) | [`arquitectura/arquitectura-inicial.md`](arquitectura/arquitectura-inicial.md) |
+
+## Proceso de arquitectura (Guía 03)
+
+| N.° | Entregable | Ubicación |
+|-----|------------|-----------|
+| 1 | Necesidad del negocio | [`analisis-de-sistema/00-necesidad-del-negocio.md`](analisis-de-sistema/00-necesidad-del-negocio.md) |
+| 2 | Requisitos | [`03-requisitos-funcionales.md`](analisis-de-sistema/03-requisitos-funcionales.md) y [`05-restricciones.md`](analisis-de-sistema/05-restricciones.md) |
+| 3 | Atributos de calidad | [`04-atributos-de-calidad.md`](analisis-de-sistema/04-atributos-de-calidad.md) |
+| 4 | Drivers arquitectónicos | [`06-driver-arquitectonicos.md`](analisis-de-sistema/06-driver-arquitectonicos.md) |
+| 5 | Decisiones arquitectónicas (ADR) | [`arquitectura/decisiones-arquitectonicas.md`](arquitectura/decisiones-arquitectonicas.md) |
+| 6 | Estilo arquitectónico | [`arquitectura/estilo-arquitectonico.md`](arquitectura/estilo-arquitectonico.md) |
+| 7 | Enfoque arquitectónico (Clean Architecture) | [`arquitectura/enfoque/enfoque-arquitectonico.md`](arquitectura/enfoque/enfoque-arquitectonico.md) |
 
 ## Diagrama de arquitectura
 

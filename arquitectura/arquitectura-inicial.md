@@ -1,6 +1,6 @@
 # Arquitectura inicial del sistema
 
-Primera propuesta de arquitectura del **Sistema de Gestión Escolar (SGE)**, elaborada a partir del análisis de la carpeta [`analisis-de-sistema/`](../analisis-de-sistema/). Se adopta una **arquitectura en tres capas** dentro de un **monolito modular** en Laravel, en respuesta a los drivers DA01–DA08. La arquitectura incluye los componentes necesarios para la **prueba de carga de 1000 usuarios simultáneos** (DA03): Nginx + PHP-FPM, Redis y una cola de trabajos para las boletas PDF.
+Primera propuesta de arquitectura del **Sistema de Gestión Escolar (SGE)**, elaborada a partir del análisis de la carpeta [`analisis-de-sistema/`](../analisis-de-sistema/). Se adopta una **arquitectura en tres capas** dentro de un **monolito modular** en Laravel, en respuesta a los drivers DA01–DA09. La arquitectura incluye los componentes necesarios para la **prueba de carga de 1000 usuarios simultáneos** (DA03): Nginx + PHP-FPM, Redis y una cola de trabajos para las boletas PDF.
 
 ## 1. Estilo arquitectónico
 
@@ -19,6 +19,14 @@ Cada módulo atraviesa las tres capas. Por ejemplo, cuando un docente registra u
 - Es un **monolito** y no microservicios por las restricciones: dos meses de plazo (RC10) y un VPS de bajo costo (RC09).
 
 Redis, la cola de trabajos y Nginx + PHP-FPM **no cambian el estilo**: siguen siendo una sola aplicación y una sola base de código. El worker de la cola ejecuta el mismo código Laravel en otro proceso, y Redis es un almacén más de la capa de datos.
+
+Este documento es la primera propuesta (Guía 02). Las etapas siguientes del proceso están en documentos propios:
+
+| Etapa | Documento |
+|-------|-----------|
+| Decisiones arquitectónicas (ADR) | [`decisiones-arquitectonicas.md`](decisiones-arquitectonicas.md) |
+| Estilo arquitectónico: alternativas evaluadas y vista de despliegue | [`estilo-arquitectonico.md`](estilo-arquitectonico.md) |
+| Enfoque arquitectónico: Clean Architecture | [`enfoque/enfoque-arquitectonico.md`](enfoque/enfoque-arquitectonico.md) |
 
 ## 2. Capas y pregunta que responde cada una
 
@@ -59,7 +67,8 @@ Redis, la cola de trabajos y Nginx + PHP-FPM **no cambian el estilo**: siguen si
 - **Autenticación y Roles** guarda las sesiones en **Redis**; los permisos RBAC y la estructura académica de **Gestión Académica** se leen desde la caché de Redis y, si no están, desde MySQL (DA03).
 - **Nginx + PHP-FPM** recibe todas las solicitudes HTTPS y las entrega a la aplicación; ningún módulo es accesible sin pasar por él (RC08, RC16).
 - **Auditoría** recibe eventos de Autenticación, Evaluación y gestión de usuarios (DA08).
-- Cada capa solo se comunica con la **capa inmediata inferior**.
+- En tiempo de ejecución, cada capa solo invoca a la **capa inmediata inferior**: Presentación → Lógica de negocio → Datos.
+- En el código, las **dependencias apuntan hacia las reglas de negocio** (Clean Architecture, ADR-002): la lógica de negocio define interfaces (puertos) y la capa de datos las implementa, de modo que las reglas no dependen de Eloquent, de Redis ni de la API de Claude. El detalle está en [`enfoque/enfoque-arquitectonico.md`](enfoque/enfoque-arquitectonico.md) (DA07, DA09).
 
 ## 5. Diagrama de arquitectura (vista simplificada)
 
@@ -259,6 +268,7 @@ Además, el módulo de **Asistente Virtual (IA)** es el único que se integra co
 | DA06 Docker de bajo costo | Pocos contenedores: Nginx, aplicación (PHP-FPM), worker de cola, MySQL y Redis. La aplicación y el worker usan la misma imagen. |
 | DA07 Testeabilidad | Lógica en clases de servicio aisladas, probadas con Pest/PHPUnit. |
 | DA08 Auditoría | Componente transversal de Auditoría con registro en la base de datos. |
+| DA09 Mantenibilidad | Módulos independientes y Clean Architecture aplicada de forma gradual: dependencias hacia el dominio (ADR-001, ADR-002). |
 
 ## 10. Estrategia para la prueba de carga
 
