@@ -454,7 +454,7 @@
    "label": "Usuarios del SGE",
    "sublabel": "Admin · Director · Docente · Padre · Alumno",
    "pos": [
-    225,
+    215,
     20
    ],
    "size": [
@@ -466,14 +466,14 @@
   {
    "id": "proxy",
    "type": "security",
-   "label": "Caddy / Nginx",
-   "sublabel": "HTTPS :443 · Let's Encrypt",
+   "label": "Nginx + PHP-FPM",
+   "sublabel": "HTTPS :443 · Let's Encrypt · OPcache",
    "pos": [
-    250,
+    220,
     140
    ],
    "size": [
-    200,
+    240,
     60
    ]
   },
@@ -483,7 +483,7 @@
    "label": "Vistas Blade + Livewire",
    "sublabel": "interfaz web responsive",
    "pos": [
-    220,
+    210,
     280
    ],
    "size": [
@@ -497,7 +497,7 @@
    "label": "Controladores + Middleware Auth/RBAC",
    "sublabel": "valida formularios · verifica sesión y permisos",
    "pos": [
-    100,
+    90,
     400
    ],
    "size": [
@@ -525,7 +525,7 @@
    "label": "Gestión Académica",
    "sublabel": "Módulo 2 · Módulo 3 Matrícula",
    "pos": [
-    260,
+    250,
     560
    ],
    "size": [
@@ -537,9 +537,9 @@
    "id": "seguimiento",
    "type": "backend",
    "label": "Asistencia y Evaluación",
-   "sublabel": "M4–M5 · boleta PDF · reportes",
+   "sublabel": "M4–M5 · boletas · reportes",
    "pos": [
-    480,
+    460,
     560
    ],
    "size": [
@@ -553,11 +553,11 @@
    "label": "Asistente Virtual IA",
    "sublabel": "Módulo 6 · chatbot",
    "pos": [
-    770,
+    740,
     560
    ],
    "size": [
-    160,
+    150,
     64
    ]
   },
@@ -571,7 +571,7 @@
     720
    ],
    "size": [
-    620,
+    600,
     56
    ],
    "icon": "backend"
@@ -582,7 +582,7 @@
    "label": "MySQL 8",
    "sublabel": "contenedor · volumen persistente",
    "pos": [
-    250,
+    240,
     840
    ],
    "size": [
@@ -591,16 +591,44 @@
    ]
   },
   {
+   "id": "redis",
+   "type": "database",
+   "label": "Redis",
+   "sublabel": "sesiones · caché · cola",
+   "pos": [
+    690,
+    720
+   ],
+   "size": [
+    170,
+    56
+   ]
+  },
+  {
+   "id": "worker",
+   "type": "messagebus",
+   "label": "Worker de cola",
+   "sublabel": "queue:work · boletas PDF",
+   "pos": [
+    1020,
+    720
+   ],
+   "size": [
+    160,
+    56
+   ]
+  },
+  {
    "id": "claude",
    "type": "external",
    "label": "API de Claude",
    "sublabel": "Anthropic · Claude Haiku",
    "pos": [
-    770,
-    720
+    1038,
+    564
    ],
    "size": [
-    160,
+    142,
     56
    ],
    "icon": "cloud"
@@ -632,7 +660,16 @@
    "label": "Capa de Datos",
    "wraps": [
     "eloquent",
-    "mysql"
+    "mysql",
+    "redis"
+   ],
+   "pad": 12
+  },
+  {
+   "kind": "region",
+   "label": "Segundo plano · mismo código Laravel",
+   "wraps": [
+    "worker"
    ],
    "pad": 12
   }
@@ -649,7 +686,7 @@
    "id": "proxy-vistas",
    "from": "proxy",
    "to": "vistas",
-   "label": "proxy HTTP"
+   "label": "FastCGI"
   },
   {
    "id": "vistas-ctrl",
@@ -720,6 +757,20 @@
    "from": "eloquent",
    "to": "mysql",
    "label": "SQL :3306"
+  },
+  {
+   "id": "seguimiento-redis",
+   "from": "seguimiento",
+   "to": "redis",
+   "label": "encola boleta PDF",
+   "variant": "dashed"
+  },
+  {
+   "id": "worker-redis",
+   "from": "worker",
+   "to": "redis",
+   "label": "toma trabajos",
+   "variant": "dashed"
   }
  ],
  "cards": [
@@ -754,8 +805,18 @@
    "dot": "amber",
    "title": "Datos y despliegue",
    "items": [
-    "MySQL 8 vía Eloquent con migraciones versionadas",
-    "Docker Compose: app + MySQL + proxy HTTPS en VPS de 2 GB (DA06)"
+    "MySQL 8 vía Eloquent con migraciones versionadas e índices",
+    "Redis: sesiones, caché de permisos y cola de trabajos",
+    "Docker Compose: Nginx + app (PHP-FPM) + worker + MySQL + Redis (DA06)"
+   ]
+  },
+  {
+   "dot": "rose",
+   "title": "Prueba de carga (DA03)",
+   "items": [
+    "Meta: 1000 usuarios simultáneos, p95 < 2 s y errores < 1 % (k6)",
+    "El worker genera las boletas PDF fuera de la solicitud HTTP",
+    "VPS de 2 vCPU / 4 GB; el chatbot se excluye o se simula (RC18)"
    ]
   }
  ]
