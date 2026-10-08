@@ -44,6 +44,9 @@ SGE-arquitSoft-02-JorgeBerrocal/
 │       ├── sge-arquitectura.archify.json
 │       ├── sge-arquitectura.html
 │       └── sge-arquitectura.png
+├── pruebas/
+│   └── carga/
+│       └── k6-1000-usuarios.js
 ├── .gitignore
 └── README.md
 ```
