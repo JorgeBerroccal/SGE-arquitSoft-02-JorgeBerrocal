@@ -13,7 +13,7 @@
 | Requisito funcional | RF13 Tipos de asistencia | No: es una regla de negocio interna del módulo de Asistencia. | No |
 | Atributo de calidad | AC01/AC02 Seguridad y privacidad | Sí: afecta autenticación, autorización y la integración con IA. | **Sí** |
 | Atributo de calidad | AC03 Rendimiento en cierre de bimestre | Sí: la meta de 1000 usuarios simultáneos afecta el acceso a datos (índices, eager loading), agrega Redis para sesiones y caché, exige un servidor de aplicación de producción (PHP-FPM u Octane) y condiciona el dimensionamiento del servidor. | **Sí** |
-| Atributo de calidad | AC05 Mantenibilidad | Sí: define la organización en capas y módulos. | **Sí** |
+| Atributo de calidad | AC05 Mantenibilidad | Sí: define la organización en capas y módulos, y la dirección de las dependencias internas. | **Sí** |
 | Atributo de calidad | AC07 Testeabilidad | Sí: exige separar la lógica de negocio en servicios que puedan probarse de forma aislada. | **Sí** |
 | Atributo de calidad | AC08 Usabilidad responsive | No: se resuelve en el diseño de la interfaz. | No |
 | Restricción | RC03/RC04 Laravel + Blade/Livewire | Sí: determina un monolito modular sin frontend separado. | **Sí** |
@@ -34,6 +34,7 @@
 | **DA06** | El sistema debe desplegarse con Docker en infraestructura de bajo costo. | RC08, RC09, AC09 | Limita el número de componentes desplegables (aplicación, base de datos, Redis, worker de cola y proxy HTTPS) y descarta arquitecturas con muchos servicios. |
 | **DA07** | La lógica de negocio debe poder probarse de forma automatizada (unitarias, integración y carga) antes de cada despliegue. | AC07, RC11, RC12 | Exige separar la lógica en clases de servicio independientes de controladores y vistas, para poder probarla de forma aislada. |
 | **DA08** | Las acciones críticas deben quedar auditadas. | RF22, AC10, RC15 | Añade un componente transversal de auditoría que registra eventos de los módulos de Autenticación, Evaluación y gestión de usuarios. |
+| **DA09** | El sistema debe permitir modificar o agregar funcionalidades sin afectar innecesariamente a otros módulos (mantenibilidad / evolución modular). | AC05 | Influye en la separación de responsabilidades, la modularidad y las dependencias internas: lleva a organizar cada módulo con Clean Architecture. |
 
 ## Ejemplo de construcción de un driver
 
