@@ -32,4 +32,4 @@ docker-compose.override.yml
 
 # Contexto de trabajo con Claude Code (no forma parte de la entrega)
 CLAUDE.md
-/docs/
+/.contexto/

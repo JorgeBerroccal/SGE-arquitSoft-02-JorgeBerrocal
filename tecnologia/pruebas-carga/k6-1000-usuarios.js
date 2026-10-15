@@ -4,7 +4,7 @@
 // Las cifras son metas; el resultado real se obtiene al ejecutar esta prueba.
 //
 // Uso:
-//   k6 run -e BASE_URL=https://tu-dominio -e CLAVE=<clave-de-prueba> pruebas/carga/k6-1000-usuarios.js
+//   k6 run -e BASE_URL=https://tu-dominio -e CLAVE=<clave-de-prueba> tecnologia/pruebas-carga/k6-1000-usuarios.js
 //
 // Variables de entorno:
 //   BASE_URL  URL del sistema desplegado (por defecto http://localhost).

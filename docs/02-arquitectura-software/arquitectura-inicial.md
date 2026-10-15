@@ -1,6 +1,6 @@
 # Arquitectura inicial del sistema
 
-Primera propuesta de arquitectura del **Sistema de Gestión Escolar (SGE)**, elaborada a partir del análisis de la carpeta [`analisis-de-sistema/`](../analisis-de-sistema/). Se adopta una **arquitectura en tres capas** dentro de un **monolito modular** en Laravel, en respuesta a los drivers DA01–DA09. La arquitectura incluye los componentes necesarios para la **prueba de carga de 1000 usuarios simultáneos** (DA03): Nginx + PHP-FPM, Redis y una cola de trabajos para las boletas PDF.
+Primera propuesta de arquitectura del **Sistema de Gestión Escolar (SGE)**, elaborada a partir del análisis de la carpeta [`analisis-de-sistema/`](../01-analisis-de-sistema/). Se adopta una **arquitectura en tres capas** dentro de un **monolito modular** en Laravel, en respuesta a los drivers DA01–DA09. La arquitectura incluye los componentes necesarios para la **prueba de carga de 1000 usuarios simultáneos** (DA03): Nginx + PHP-FPM, Redis y una cola de trabajos para las boletas PDF.
 
 ## 1. Estilo arquitectónico
 
@@ -24,9 +24,9 @@ Este documento es la primera propuesta (Guía 02). Las etapas siguientes del pro
 
 | Etapa | Documento |
 |-------|-----------|
-| Decisiones arquitectónicas (ADR) | [`decisiones-arquitectonicas.md`](decisiones-arquitectonicas.md) |
+| Decisiones arquitectónicas (ADR) | [`07-decisiones-arquitectonicas.md`](../01-analisis-de-sistema/07-decisiones-arquitectonicas.md) |
 | Estilo arquitectónico: alternativas evaluadas y vista de despliegue | [`estilo-arquitectonico.md`](estilo-arquitectonico.md) |
-| Enfoque arquitectónico: Clean Architecture | [`enfoque/enfoque-arquitectonico.md`](enfoque/enfoque-arquitectonico.md) |
+| Enfoque arquitectónico: Clean Architecture | [`enfoque-arquitectonico.md`](enfoque-arquitectonico.md) |
 
 ## 2. Capas y pregunta que responde cada una
 
@@ -68,7 +68,7 @@ Este documento es la primera propuesta (Guía 02). Las etapas siguientes del pro
 - **Nginx + PHP-FPM** recibe todas las solicitudes HTTPS y las entrega a la aplicación; ningún módulo es accesible sin pasar por él (RC08, RC16).
 - **Auditoría** recibe eventos de Autenticación, Evaluación y gestión de usuarios (DA08).
 - En tiempo de ejecución, cada capa solo invoca a la **capa inmediata inferior**: Presentación → Lógica de negocio → Datos.
-- En el código, las **dependencias apuntan hacia las reglas de negocio** (Clean Architecture, ADR-002): la lógica de negocio define interfaces (puertos) y la capa de datos las implementa, de modo que las reglas no dependen de Eloquent, de Redis ni de la API de Claude. El detalle está en [`enfoque/enfoque-arquitectonico.md`](enfoque/enfoque-arquitectonico.md) (DA07, DA09).
+- En el código, las **dependencias apuntan hacia las reglas de negocio** (Clean Architecture, ADR-002): la lógica de negocio define interfaces (puertos) y la capa de datos las implementa, de modo que las reglas no dependen de Eloquent, de Redis ni de la API de Claude. El detalle está en [`enfoque-arquitectonico.md`](enfoque-arquitectonico.md) (DA07, DA09).
 
 ## 5. Diagrama de arquitectura (vista simplificada)
 
@@ -103,13 +103,13 @@ Este documento es la primera propuesta (Guía 02). Las etapas siguientes del pro
 
 Diagrama interactivo generado con la skill [Archify](https://github.com/tt-a1i/archify) (MIT). Archify parte de una especificación JSON tipada, la valida contra su esquema, revisa la composición (cruces de líneas, etiquetas, legibilidad) y entrega un HTML autocontenido con tema claro/oscuro, enfoque por nodo, trazado de rutas y exportación a PNG/SVG.
 
-![Arquitectura del SGE generada con Archify](archify/sge-arquitectura.png)
+![Arquitectura del SGE generada con Archify](../img/sge-arquitectura-inicial.png)
 
 | Archivo | Contenido |
 |---------|-----------|
-| [`archify/sge-arquitectura.archify.json`](archify/sge-arquitectura.archify.json) | Especificación fuente del diagrama (componentes, capas, relaciones y tarjetas) |
-| [`archify/sge-arquitectura.html`](archify/sge-arquitectura.html) | Diagrama interactivo (descargar y abrir en el navegador) |
-| [`archify/sge-arquitectura.png`](archify/sge-arquitectura.png) | Imagen estática para el README y documentos |
+| [`img/fuentes/sge-arquitectura-inicial.archify.json`](../img/fuentes/sge-arquitectura-inicial.archify.json) | Especificación fuente del diagrama (componentes, capas, relaciones y tarjetas) |
+| [`img/fuentes/sge-arquitectura-inicial.html`](../img/fuentes/sge-arquitectura-inicial.html) | Diagrama interactivo (descargar y abrir en el navegador) |
+| [`img/sge-arquitectura-inicial.png`](../img/sge-arquitectura-inicial.png) | Imagen estática para el README y documentos |
 
 ### Cambios respecto a la versión inicial
 
@@ -137,8 +137,8 @@ npx skills add tt-a1i/archify -g
 
 # 2. Validar y generar el HTML desde la raíz del repositorio
 node <ruta-de-archify>/bin/archify.mjs finalize architecture \
-  arquitectura/archify/sge-arquitectura.archify.json \
-  arquitectura/archify/sge-arquitectura.html --quality showcase
+  docs/img/fuentes/sge-arquitectura-inicial.archify.json \
+  docs/img/fuentes/sge-arquitectura-inicial.html --quality showcase
 ```
 
 ## 7. Diagrama de arquitectura (Mermaid)
@@ -306,7 +306,7 @@ La docente aplicará una **prueba de carga con 1000 usuarios simultáneos** (AC0
 
 ### Script k6 de referencia
 
-El script completo está en [`pruebas/carga/k6-1000-usuarios.js`](../pruebas/carga/k6-1000-usuarios.js). Su configuración central es:
+El script completo está en [`tecnologia/pruebas-carga/k6-1000-usuarios.js`](../../tecnologia/pruebas-carga/k6-1000-usuarios.js). Su configuración central es:
 
 ```javascript
 export const options = {
@@ -326,7 +326,7 @@ export const options = {
 Cada usuario virtual inicia sesión una vez y luego consulta notas, asistencia y su boleta, con pausas aleatorias de 2 a 5 segundos. Las rutas del script son provisionales hasta que exista la aplicación. Se ejecuta con:
 
 ```bash
-k6 run -e BASE_URL=https://tu-dominio -e CLAVE=<clave-de-prueba> pruebas/carga/k6-1000-usuarios.js
+k6 run -e BASE_URL=https://tu-dominio -e CLAVE=<clave-de-prueba> tecnologia/pruebas-carga/k6-1000-usuarios.js
 ```
 
 ### Pendiente de confirmar con la docente

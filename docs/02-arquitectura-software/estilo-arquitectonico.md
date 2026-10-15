@@ -2,7 +2,7 @@
 
 > **Pregunta guía:** ¿Cómo estructuramos globalmente el sistema?
 
-El estilo arquitectónico es la **forma global de organización y despliegue** del sistema. No describe cómo se ordena el código por dentro; eso corresponde al [enfoque arquitectónico](enfoque/enfoque-arquitectonico.md).
+El estilo arquitectónico es la **forma global de organización y despliegue** del sistema. No describe cómo se ordena el código por dentro; eso corresponde al [enfoque arquitectónico](enfoque-arquitectonico.md).
 
 ## Estilo seleccionado
 
@@ -26,15 +26,15 @@ Cada módulo atraviesa las tres capas. Por ejemplo, cuando un docente registra u
 | Serverless | No | Laravel con sesiones, cola y generación de PDF no encaja bien, y el costo por uso es poco predecible (RC09). |
 | Dirigido por eventos | Parcial | No es el estilo global, pero se usa de forma puntual: cola para las boletas PDF (ADR-007) y eventos para la auditoría (ADR-010). |
 
-La decisión está registrada en [ADR-001](decisiones-arquitectonicas.md#adr-001--monolito-modular).
+La decisión está registrada en [ADR-001](../01-analisis-de-sistema/07-decisiones-arquitectonicas.md#adr-001--monolito-modular).
 
 ## Diagrama del estilo
 
 Vista global: componentes principales del sistema y cómo se relacionan.
 
-![Arquitectura del SGE generada con Archify](archify/sge-arquitectura.png)
+![Arquitectura del SGE generada con Archify](../img/sge-arquitectura-inicial.png)
 
-Versión interactiva: [`archify/sge-arquitectura.html`](archify/sge-arquitectura.html).
+Versión interactiva: [`img/fuentes/sge-arquitectura-inicial.html`](../img/fuentes/sge-arquitectura-inicial.html).
 
 ### Vista de despliegue
 
@@ -92,4 +92,4 @@ flowchart TD
 
 - Todos los módulos escalan juntos: no se puede dar más recursos solo a Evaluación.
 - Un fallo grave de la aplicación afecta a todos los módulos.
-- Los límites entre módulos no los impone la red, sino las reglas del [enfoque arquitectónico](enfoque/enfoque-arquitectonico.md).
+- Los límites entre módulos no los impone la red, sino las reglas del [enfoque arquitectónico](enfoque-arquitectonico.md).

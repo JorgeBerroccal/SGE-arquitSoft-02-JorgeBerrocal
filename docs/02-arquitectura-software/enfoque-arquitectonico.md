@@ -2,7 +2,7 @@
 
 > **Pregunta guía:** ¿Qué estructura arquitectónica aplicaremos?
 
-El enfoque arquitectónico define **cómo se organizan las responsabilidades y las dependencias internas** del sistema. El [estilo arquitectónico](../estilo-arquitectonico.md) (monolito modular en capas) dice cómo se estructura y despliega el sistema; el enfoque dice dónde vive cada responsabilidad dentro del código.
+El enfoque arquitectónico define **cómo se organizan las responsabilidades y las dependencias internas** del sistema. El [estilo arquitectónico](estilo-arquitectonico.md) (monolito modular en capas) dice cómo se estructura y despliega el sistema; el enfoque dice dónde vive cada responsabilidad dentro del código.
 
 ## Enfoque seleccionado
 
@@ -13,7 +13,7 @@ El enfoque arquitectónico define **cómo se organizan las responsabilidades y l
 | **¿Qué problema resuelve?** | Evita el acoplamiento entre la interfaz Blade/Livewire, las reglas del negocio y las tecnologías externas: MySQL, Redis, la generación de PDF y la API de Claude. |
 | **Capas definidas** | Presentación, Aplicación, Dominio e Infraestructura. |
 | **Beneficios** | Facilita el mantenimiento y las pruebas unitarias (DA07, DA09). Permite cambiar implementaciones técnicas sin modificar las reglas del negocio. Mejora la organización del código. |
-| **Decisión registrada** | [ADR-002](../decisiones-arquitectonicas.md#adr-002--clean-architecture-aplicada-de-forma-gradual) |
+| **Decisión registrada** | [ADR-002](../01-analisis-de-sistema/07-decisiones-arquitectonicas.md#adr-002--clean-architecture-aplicada-de-forma-gradual) |
 
 ## La regla de dependencia
 

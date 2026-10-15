@@ -31,52 +31,45 @@ Arquitectura de Software (IS-488) — Docente: Ing. Lizbeth Jaico Quispe — Sem
 
 ```
 SGE-arquitSoft-02-JorgeBerrocal/
-├── analisis-de-sistema/
-│   ├── 00-necesidad-del-negocio.md
-│   ├── 01-actores.md
-│   ├── 02-historias-del-usuario.md
-│   ├── 03-requisitos-funcionales.md
-│   ├── 04-atributos-de-calidad.md
-│   ├── 05-restricciones.md
-│   └── 06-driver-arquitectonicos.md
-├── arquitectura/
-│   ├── arquitectura-inicial.md
-│   ├── decisiones-arquitectonicas.md
-│   ├── estilo-arquitectonico.md
-│   ├── enfoque/
+├── docs/                                   Documentación del proyecto
+│   ├── 01-analisis-de-sistema/
+│   │   ├── 00-necesidad-del-negocio.md
+│   │   ├── 01-actores.md
+│   │   ├── 02-historias-del-usuario.md
+│   │   ├── 03-requisitos-funcionales.md
+│   │   ├── 04-atributos-de-calidad.md
+│   │   ├── 05-restricciones.md
+│   │   ├── 06-driver-arquitectonicos.md
+│   │   └── 07-decisiones-arquitectonicas.md
+│   ├── 02-arquitectura-software/
+│   │   ├── arquitectura-inicial.md
+│   │   ├── estilo-arquitectonico.md
 │   │   └── enfoque-arquitectonico.md
-│   └── archify/
-│       ├── sge-arquitectura.archify.json
-│       ├── sge-arquitectura.html
-│       └── sge-arquitectura.png
-├── pruebas/
-│   └── carga/
+│   └── img/                                Imágenes (PNG) y sus fuentes editables
+│       └── fuentes/                        Especificaciones Archify (.archify.json) y versiones interactivas (.html)
+├── tecnologia/                             Recursos tecnológicos
+│   └── pruebas-carga/
 │       └── k6-1000-usuarios.js
 ├── .gitignore
 └── README.md
 ```
 
-## Etapas del trabajo (Guía 02)
-
-| Etapa | Contenido | Ubicación |
-|-------|-----------|-----------|
-| Etapa 1: Análisis del sistema | Actores, historias de usuario, requisitos funcionales, atributos de calidad, restricciones y drivers arquitectónicos | [`analisis-de-sistema/`](analisis-de-sistema/) |
-| Etapa 2: Diseño arquitectónico inicial | Capas, módulos, responsabilidades, dependencias, sistemas externos y diagramas (Mermaid y Archify) | [`arquitectura/arquitectura-inicial.md`](arquitectura/arquitectura-inicial.md) |
-
-## Proceso de arquitectura (Guía 03)
+## Documentación
 
 | N.° | Entregable | Ubicación |
 |-----|------------|-----------|
-| 1 | Necesidad del negocio | [`analisis-de-sistema/00-necesidad-del-negocio.md`](analisis-de-sistema/00-necesidad-del-negocio.md) |
-| 2 | Requisitos | [`03-requisitos-funcionales.md`](analisis-de-sistema/03-requisitos-funcionales.md) y [`05-restricciones.md`](analisis-de-sistema/05-restricciones.md) |
-| 3 | Atributos de calidad | [`04-atributos-de-calidad.md`](analisis-de-sistema/04-atributos-de-calidad.md) |
-| 4 | Drivers arquitectónicos | [`06-driver-arquitectonicos.md`](analisis-de-sistema/06-driver-arquitectonicos.md) |
-| 5 | Decisiones arquitectónicas (ADR) | [`arquitectura/decisiones-arquitectonicas.md`](arquitectura/decisiones-arquitectonicas.md) |
-| 6 | Estilo arquitectónico | [`arquitectura/estilo-arquitectonico.md`](arquitectura/estilo-arquitectonico.md) |
-| 7 | Enfoque arquitectónico (Clean Architecture) | [`arquitectura/enfoque/enfoque-arquitectonico.md`](arquitectura/enfoque/enfoque-arquitectonico.md) |
+| 1 | Necesidad del negocio | [`00-necesidad-del-negocio.md`](docs/01-analisis-de-sistema/00-necesidad-del-negocio.md) |
+| 2 | Actores e historias de usuario | [`01-actores.md`](docs/01-analisis-de-sistema/01-actores.md) y [`02-historias-del-usuario.md`](docs/01-analisis-de-sistema/02-historias-del-usuario.md) |
+| 3 | Requisitos y restricciones | [`03-requisitos-funcionales.md`](docs/01-analisis-de-sistema/03-requisitos-funcionales.md) y [`05-restricciones.md`](docs/01-analisis-de-sistema/05-restricciones.md) |
+| 4 | Atributos de calidad | [`04-atributos-de-calidad.md`](docs/01-analisis-de-sistema/04-atributos-de-calidad.md) |
+| 5 | Drivers arquitectónicos | [`06-driver-arquitectonicos.md`](docs/01-analisis-de-sistema/06-driver-arquitectonicos.md) |
+| 6 | Decisiones arquitectónicas (ADR) | [`07-decisiones-arquitectonicas.md`](docs/01-analisis-de-sistema/07-decisiones-arquitectonicas.md) |
+| 7 | Arquitectura inicial | [`arquitectura-inicial.md`](docs/02-arquitectura-software/arquitectura-inicial.md) |
+| 8 | Estilo arquitectónico | [`estilo-arquitectonico.md`](docs/02-arquitectura-software/estilo-arquitectonico.md) |
+| 9 | Enfoque arquitectónico (Clean Architecture) | [`enfoque-arquitectonico.md`](docs/02-arquitectura-software/enfoque-arquitectonico.md) |
 
 ## Diagrama de arquitectura
 
-![Arquitectura del SGE](arquitectura/archify/sge-arquitectura.png)
+![Arquitectura del SGE](docs/img/sge-arquitectura-inicial.png)
 
-Generado con [Archify](https://github.com/tt-a1i/archify). Versión interactiva: [`arquitectura/archify/sge-arquitectura.html`](arquitectura/archify/sge-arquitectura.html).
+Generado con [Archify](https://github.com/tt-a1i/archify). Versión interactiva: [`docs/img/fuentes/sge-arquitectura-inicial.html`](docs/img/fuentes/sge-arquitectura-inicial.html).

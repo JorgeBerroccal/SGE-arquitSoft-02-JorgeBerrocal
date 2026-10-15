@@ -2,7 +2,7 @@
 
 > **Pregunta guía:** ¿Cómo responderemos a los drivers?
 
-Un **ADR** (*Architecture Decision Record*, registro de decisión arquitectónica) documenta una decisión importante del diseño junto con su justificación. Cada decisión responde a uno o más drivers de [`06-driver-arquitectonicos.md`](../analisis-de-sistema/06-driver-arquitectonicos.md).
+Un **ADR** (*Architecture Decision Record*, registro de decisión arquitectónica) documenta una decisión importante del diseño junto con su justificación. Cada decisión responde a uno o más drivers de [`06-driver-arquitectonicos.md`](06-driver-arquitectonicos.md).
 
 ## Resumen de decisiones
 
@@ -41,7 +41,7 @@ Todas las decisiones están en estado **Aceptada**.
 - **Alternativas descartadas:**
   - *MVC con capa de servicios:* es lo habitual en Laravel y lo más rápido, pero las reglas quedan atadas a Eloquent y no se pueden probar sin base de datos.
   - *Clean Architecture completa en todos los módulos:* agrega entidades, interfaces y traductores a módulos que solo guardan y listan datos; es un costo que el plazo no justifica.
-- **Consecuencias:** las reglas de notas, promedios, matrícula y privacidad de la IA se prueban sin base de datos ni red. A cambio, hay más archivos en los tres módulos completos y el equipo debe respetar la regla de dependencia. El detalle está en [`enfoque/enfoque-arquitectonico.md`](enfoque/enfoque-arquitectonico.md).
+- **Consecuencias:** las reglas de notas, promedios, matrícula y privacidad de la IA se prueban sin base de datos ni red. A cambio, hay más archivos en los tres módulos completos y el equipo debe respetar la regla de dependencia. El detalle está en [`enfoque/enfoque-arquitectonico.md`](../02-arquitectura-software/enfoque-arquitectonico.md).
 
 ### ADR-003 — RBAC propio y configurable
 
