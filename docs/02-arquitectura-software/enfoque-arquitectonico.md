@@ -96,7 +96,7 @@ Cada módulo del monolito tiene sus propias cuatro capas:
 ```
 app/Modulos/
 ├── Evaluacion/
-│   ├── Dominio/            Calificacion, Boleta, Escala, CalculadorPromedio
+│   ├── Dominio/            Calificacion, Escala, EscalaLiteral, EscalaVigesimal
 │   ├── Aplicacion/
 │   │   ├── CasosDeUso/     RegistrarNota, GenerarBoleta
 │   │   └── Puertos/        RepositorioCalificaciones, GeneradorBoleta
