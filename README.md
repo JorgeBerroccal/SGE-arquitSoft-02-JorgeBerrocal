@@ -40,7 +40,8 @@ SGE-arquitSoft-02-JorgeBerrocal/
 │   │   ├── 04-atributos-de-calidad.md
 │   │   ├── 05-restricciones.md
 │   │   ├── 06-driver-arquitectonicos.md
-│   │   └── 07-decisiones-arquitectonicas.md
+│   │   ├── 07-decisiones-arquitectonicas.md
+│   │   └── 08-escenarios-atributos-calidad.md
 │   ├── 02-arquitectura-software/
 │   │   ├── arquitectura-inicial.md
 │   │   ├── estilo-arquitectonico.md
@@ -61,7 +62,7 @@ SGE-arquitSoft-02-JorgeBerrocal/
 | 1 | Necesidad del negocio | [`00-necesidad-del-negocio.md`](docs/01-analisis-de-sistema/00-necesidad-del-negocio.md) |
 | 2 | Actores e historias de usuario | [`01-actores.md`](docs/01-analisis-de-sistema/01-actores.md) y [`02-historias-del-usuario.md`](docs/01-analisis-de-sistema/02-historias-del-usuario.md) |
 | 3 | Requisitos y restricciones | [`03-requisitos-funcionales.md`](docs/01-analisis-de-sistema/03-requisitos-funcionales.md) y [`05-restricciones.md`](docs/01-analisis-de-sistema/05-restricciones.md) |
-| 4 | Atributos de calidad | [`04-atributos-de-calidad.md`](docs/01-analisis-de-sistema/04-atributos-de-calidad.md) |
+| 4 | Atributos de calidad y escenarios medibles | [`04-atributos-de-calidad.md`](docs/01-analisis-de-sistema/04-atributos-de-calidad.md) y [`08-escenarios-atributos-calidad.md`](docs/01-analisis-de-sistema/08-escenarios-atributos-calidad.md) |
 | 5 | Drivers arquitectónicos | [`06-driver-arquitectonicos.md`](docs/01-analisis-de-sistema/06-driver-arquitectonicos.md) |
 | 6 | Decisiones arquitectónicas (ADR) | [`07-decisiones-arquitectonicas.md`](docs/01-analisis-de-sistema/07-decisiones-arquitectonicas.md) |
 | 7 | Arquitectura inicial | [`arquitectura-inicial.md`](docs/02-arquitectura-software/arquitectura-inicial.md) |

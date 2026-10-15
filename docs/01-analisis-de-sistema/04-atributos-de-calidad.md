@@ -29,3 +29,7 @@ Al **cierre de un bimestre**, todos los docentes registran notas de forma simult
 
 - **Funcional:** el sistema debe permitir registrar notas.
 - **Calidad:** el registro de notas debe ser seguro (solo el docente asignado), quedar auditado y responder rápidamente incluso al cierre del bimestre.
+
+## Escenarios medibles
+
+Cada atributo se convierte en un escenario con fuente, estímulo, artefacto, entorno, respuesta y medida en [`08-escenarios-atributos-calidad.md`](08-escenarios-atributos-calidad.md) (EQ-01 a EQ-10).
